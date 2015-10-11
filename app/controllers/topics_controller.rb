@@ -4,8 +4,6 @@ class TopicsController < ApplicationController
 
 
   def index
-    # client = Octokit::Client.new({login: current_user.nickname, access_token: current_user.access_token})
-    # # client.user
     # # client = Octokit::Client.new({ access_token: current_user.access_token, client_id: ENV['GITHUB_APP_ID'] , client_secret: ENV['GITHUB_APP_SECRET']})
     #  user = client.user
     #  user.login
