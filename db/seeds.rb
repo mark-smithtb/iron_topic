@@ -15,8 +15,9 @@ end
 
 def interest_create
   scores = [1,2,3,4,5]
+  topics = (0..10).to_a
   @topic = Topic.find(15)
-  @interest = @topic.interests.new(comment: Faker::Lorem.paragraph, score: scores.sample, user_id: 3, topic_id: 15)
+  @interest = @topic.interests.new(comment: Faker::Lorem.paragraph, score: scores.sample, user_id: 3, topic_id: topics.sample )
   @interest.save
   @topic.interest_count += 1
   score = @interest.score
