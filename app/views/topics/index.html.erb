@@ -1,0 +1,19 @@
+<% @topics.each do |topic| %>
+
+<h3> <a href="<%= topic_path(topic) %>"><%= topic.title %></a> </h3>
+<h4><%= topic.focus_area %> </h4>
+<% if policy(topic) %>
+<span>
+  <%= link_to 'edit word', edit_definition_path(definition) %>
+  <%= link_to 'delete word', definition, method: :delete, data: { confirm: 'Are you sure?' } %>
+</span>
+<% end %>
+<span>
+  <%= topic.user.name %>
+  rating: <%= topic.rating %>
+</span>
+<p>
+  <%= markdown(topic.description) %>
+</p>
+<%= link_to 'Rate this topic', topic_path(topic) %>
+<% end %>

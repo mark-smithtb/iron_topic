@@ -1,0 +1,18 @@
+<%= form_for([@topic, Interest.new], class: "form-horizontal") do |f| %>
+
+  <div class="field">
+    <%= f.label :score %><br>
+    <%= f.radio_button(:score, 1)%>
+    <%= f.radio_button(:score, 2)%>
+    <%= f.radio_button(:score, 3)%>
+    <%= f.radio_button(:score, 4)%>
+    <%= f.radio_button(:score, 5)%>
+  </div>
+  <div class="field">
+    <%= f.label :comment %>
+    <%= f.text_area :comment %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

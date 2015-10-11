@@ -1,0 +1,25 @@
+<div class='container'>
+  <p id="notice"><%= notice %></p>
+
+  <div class="col-md-6">
+    <div class="row">
+      <span>
+        <span id='word'><%= @topic.title %></span>
+        <%= link_to 'Edit', edit_topic_path(@topic) %>
+      </span>
+    </div>
+    <p class="row"><%= @topic.focus_area %></p>
+    <p class="row">
+      <%= markdown(@topic.description) %>
+    </p>
+    <%= render 'interests_form' %>
+
+    <% @topic.interests.order(created_at: :desc).each do |interest| %>
+    <p>
+    <%= interest.user.name %>
+    <%= interest.score %>
+    <%= markdown(interest.comment) %>
+    <% end %>
+  </p>
+
+    </div>
