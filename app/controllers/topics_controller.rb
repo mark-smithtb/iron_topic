@@ -4,23 +4,28 @@ class TopicsController < ApplicationController
 
 
   def index
-      client = Octokit::Client.new(access_token: current_user.access_token)
-    user = client.user
-    user.login
-    @organizations = user.organizations(current_user.nickname)
+    # client = Octokit::Client.new({login: current_user.nickname, access_token: current_user.access_token})
+    # # client.user
+    # # client = Octokit::Client.new({ access_token: current_user.access_token, client_id: ENV['GITHUB_APP_ID'] , client_secret: ENV['GITHUB_APP_SECRET']})
+    #  user = client.user
+    #  user.login
+    # byebug
+    # @organizations = client.user.organizations(current_user.nickname)
     @topics = Topic.all.order(rating: :desc).page(params[:page])
   end
 
   def newest
-    @topics = Topic.all.order(rating: :desc)page(params[:page])
+    @topics = Topic.all.order(created_at: :desc).page(params[:page])
     render :index
   end
 
   def search
-    @topcs = Topics.seach(params[:q]).page(params[:page])
+    @topics = Topic.search(params[:q]).page(params[:page])
+    render :index
   end
 
   def show
+    @interests = @topic.interests.order(created_at: :desc).page(params[:page])
   end
 
   def edit
@@ -29,7 +34,6 @@ class TopicsController < ApplicationController
 
   def new
     @topic = Topic.new
-    authorize(@topic)
   end
 
   def create
@@ -40,7 +44,6 @@ class TopicsController < ApplicationController
   end
 
   def destroy
-    @topic = Topic.new(params[:id])
     authorize(@topic)
     @topic.destroy
     @topic.save

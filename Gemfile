@@ -11,6 +11,10 @@ gem 'omniauth-github'
 gem 'dotenv-rails'
 gem 'octokit'
 
+#markup and syntax highlighting
+gem 'redcarpet'
+gem 'coderay'
+
 #Authorization
 gem 'pundit', '~> 1.0.1'
 
@@ -66,6 +70,8 @@ end
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
+  gem "better_errors"
+
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'

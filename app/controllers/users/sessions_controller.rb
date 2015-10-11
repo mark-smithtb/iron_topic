@@ -7,9 +7,11 @@ class Users::SessionsController < Devise::SessionsController
   # end
 
   # POST /resource/sign_in
-  # def create
-  #   super
-  # end
+  def create
+    super
+    client = Octokit::Client.new :access_token = auth_hash['credentials']['token']
+    bugbye
+  end
 
   # DELETE /resource/sign_out
   # def destroy
@@ -22,4 +24,10 @@ class Users::SessionsController < Devise::SessionsController
   # def configure_sign_in_params
   #   devise_parameter_sanitizer.for(:sign_in) << :attribute
   # end
+  protected
+
+def auth_hash
+request.env[‘omniauth.auth’]
+end
+
 end

@@ -1,11 +1,11 @@
 class Topic < ActiveRecord::Base
-  validates :topic, presence: true
-  validates :focus_area, presence: true
-  validates :description, presence: true
   has_many :interests
   belongs_to :user
+  paginates_per 10
 
 
   def self.search(search)
-    where("topic LIKE ? or focus_area LIKE ?", "%#{search}%" , "%#{search}%")
+    where("title LIKE ? or focus_area LIKE ?", "%#{search}%" , "%#{search}%")
+  end
+
 end

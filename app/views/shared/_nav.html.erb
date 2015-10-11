@@ -1,16 +1,18 @@
-<div class="navbar navbar-default navigation">
+<div class="navbar navigation">
   <div class="container">
-    <div class="navbar-collapse collapse">
+    <div class="navbar-collapse collapse content">
       <ul class="nav navbar-nav">
         <% if user_signed_in? %>
+        <li class="navigation_link"><%= link_to 'Home', topics_path %></li>
+        <li class="navigation_link"><%= link_to 'New', newest_topics_path %></li>
         <li id='new_topic' class="navigation_link"><%= link_to 'Add a topic', new_topic_path %></li>
       </li>
     </ul>
     <ul class="nav navbar-nav pull-right">
       <li>
         <form method="get" action="<%= search_topics_path %>" class="navbar-form pull-right" role="search">
-          <input type="text" class="form-control" placeholder="Search" name="search">
-          <button type="submit" class="btn btn-default">Seach</button>
+          <input type="text" class="search-field" placeholder="Search" name="q" >
+          <button type="submit" class="btn search">Seach</button>
         </form>
       </li>
       <li><%= link_to "Logout", destroy_user_session_path, method: :delete, data: { confirm: 'Really logout?' }, class: "navigation_link" %></li>

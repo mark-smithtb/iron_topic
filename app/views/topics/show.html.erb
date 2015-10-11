@@ -1,25 +1,43 @@
 <div class='container'>
   <p id="notice"><%= notice %></p>
 
-  <div class="col-md-6">
-    <div class="row">
-      <span>
-        <span id='word'><%= @topic.title %></span>
-        <%= link_to 'Edit', edit_topic_path(@topic) %>
-      </span>
-    </div>
-    <p class="row"><%= @topic.focus_area %></p>
-    <p class="row">
-      <%= markdown(@topic.description) %>
-    </p>
-    <%= render 'interests_form' %>
+  <div class="topic">
+  <div class="row">
+  <span class="title"><%= @topic.title %></span>
+  </div>
+  <div class="col-md-8">
+  <h4>Focus: <%= @topic.focus_area %> </h4>
+  <span class="row">Rating: <%= @topic.rating %></span>
 
-    <% @topic.interests.order(created_at: :desc).each do |interest| %>
+
+  <p>
+    by
+    <%= @topic.user.name %>
+    <%=time_ago_in_words(@topic.created_at)%>
+    ago
+  </p>
+  <span>
+    <% if policy(@topic).update? %>
+    <%= link_to 'edit topic', edit_topic_path(@topic) %>
+    <% end %>
+    <% if policy(@topic).destroy? %>
+    <%= link_to 'delete word', @topic, method: :delete, data: { confirm: 'Are you sure?' } %>
+    <% end %>
+  </span>
+  <p>
+    <%= markdown(@topic.description) %>
+  </p>
+    <%= render 'interests_form' %>
+    <h4>Ratings and Comments</h4>
+    <% @interests.each do |interest| %>
     <p>
     <%= interest.user.name %>
     <%= interest.score %>
     <%= markdown(interest.comment) %>
+    </p>
     <% end %>
-  </p>
+    <%= link_to_previous_page @interests, 'Previous' %>
+    <%= link_to_next_page @interests, 'Next Page' %>
+
 
     </div>

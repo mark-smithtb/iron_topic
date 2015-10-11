@@ -1,0 +1,27 @@
+.navigation {
+  background-color: #39474e;
+  height: 8em;
+ .content {
+   position: relative;
+   top: 2em;
+
+   a {
+     color: #afb0b1;
+     font-size: 1.5em;
+   }
+
+ }
+}
+
+.search-field {
+  background-color: #30373d;
+  border: 0;
+  width: 10em;
+  height: 1.8em;
+  font-size: 18px;
+}
+
+.search {
+  background-color: #478c89;
+
+}

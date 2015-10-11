@@ -10,7 +10,7 @@ class InterestsController < ApplicationController
 
     def create
       @topic = Topic.find(params[:topic_id])
-      @interest = @topic.interests.build(interest_params)
+      @interest = @topic.interests.new(interest_params)
       @interest.user_id = current_user.id
       @interest.save
       @topic.interest_count += 1
@@ -18,13 +18,14 @@ class InterestsController < ApplicationController
       @topic.interest_score += score
       @topic.rating = @topic.interest_score / @topic.interest_count
       @topic.save
-
       redirect_to @topic
     end
 
     def destroy
-      @interest = Interest.new(params[:id])
+      @topic = topic.find(params[:topic_id])
       @interest.destroy
+      @topic.interest_count -= 1
+      @topic.interest_score -= @interest.score
       @interest.save
       redirect_to interests_url
     end
