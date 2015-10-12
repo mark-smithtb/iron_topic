@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks: "omniauth_callbacks"}
-    get '/auth/:provider/callback', to: 'sessions#create'
+  get '/auth/:provider/callback', to: 'sessions#create'
 
 
   resources :topics do
@@ -10,8 +10,8 @@ Rails.application.routes.draw do
     end
     collection do
       get :search
+    end
   end
-end
 
   resources :users
   resources :interests

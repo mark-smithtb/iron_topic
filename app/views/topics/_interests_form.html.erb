@@ -1,29 +1,21 @@
 <div class="interest-form">
-<%= form_for([@topic, Interest.new], class: "form-horizontal") do |f| %>
-<h4> Rate this topic </h4>
-<div class="row">
-  <div class="score">
-    <p> Rating </p>
-    <%= f.radio_button(:score, 1, id: "star1")%>
-    <%= f.label(:"1" , id: "full")  %>
-    <%= f.radio_button(:score, 2, id: "star2")%>
-    <%= f.label(:"2", id: "full")  %>
-    <%= f.radio_button(:score, 3, id: "star3")%>
-    <%= f.label(:"3", id: "full")  %>
-    <%= f.radio_button(:score, 4, id: "star4")%>
-    <%= f.label(:"4", id: "full")  %>
-    <%= f.radio_button(:score, 5, id: "star5")%>
-    <%= f.label(:"5", id: "full")  %>
+  <%= form_for([@topic, Interest.new], class: "form-horizontal") do |f| %>
+  <h4> Rate this topic </h4>
+  <div class="row">
+      <p> Rating </p>
+      <div class="input-group">
+    <%= f.label :score %><br>
+    <%= f.hidden_field :score, class: "rating form_control" %>
   </div>
-</div>
-<div class="row">
-  <div class="field">
-    <p> Comment </p>
-    <%= f.text_area :comment %>
   </div>
-</div>
+  <div class="row">
+    <div class="field">
+      <p> Comment </p>
+      <%= f.text_area :comment %>
+    </div>
+  </div>
   <div class="actions">
     <%= f.submit "Rate", class: "btn rating-button interest-button"%>
   </div>
-<% end %>
+  <% end %>
 </div>

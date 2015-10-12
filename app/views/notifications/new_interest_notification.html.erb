@@ -9,5 +9,5 @@
 <p>
 <%= @interest.user.name %>
 <%= @interest.score %>
-<%= @interest.comment %>
+<%= markdown(@interest.comment) %>
 </p>

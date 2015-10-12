@@ -12,13 +12,18 @@
       <li>
         <form method="get" action="<%= search_topics_path %>" class="navbar-form pull-right" role="search">
           <input type="text" class="search-field" placeholder="Search" name="q" >
-          <button type="submit" class="btn search">Seach</button>
+          <select type="select" class="search-select" name="scope">
+            <option value="all" selected>All</option>
+            <option value="title">Title</option>
+            <option value="focus_area">Focus Area</option>
+            <option value="user">User</option>
+          </select>
+          <button type="submit" class="btn search">Search</button>
         </form>
       </li>
       <li><%= link_to "Logout", destroy_user_session_path, method: :delete, data: { confirm: 'Really logout?' }, class: "navigation_link" %></li>
       <%else%>
       <li><%= link_to 'Create an Account', new_user_registration_path, class: "navigation_link" %></li>
-
       <%end%>
     </ul>
   </div>

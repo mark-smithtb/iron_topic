@@ -6,6 +6,7 @@ class Notifications < ApplicationMailer
   #   en.notifications.new_interest_notification.subject
   #
   default from: 'msmith34683@gmail.com'
+  add_template_helper(ApplicationHelper)
 
   def new_interest_notification(topic, interest)
     @topic = topic

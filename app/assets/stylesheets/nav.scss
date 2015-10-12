@@ -14,14 +14,26 @@
 }
 
 .search-field {
+  position: relative;
+  top: 1px;
   background-color: #30373d;
   border: 0;
   width: 10em;
   height: 1.8em;
   font-size: 18px;
+  border-radius: 5px;
+  color: #afb0b1;
 }
 
 .search {
   background-color: #478c89;
 
+}
+
+.search-select {
+  background-color: #30373d;
+  color: #afb0b1;
+  height: 1.8em;
+  font-size: 18px;
+  border: 0;
 }

@@ -1,17 +1,10 @@
-<%= form_for(, class: "form-horizontal") do |f| %>
+<%= form_for() do |f| %>
 
 <div class="field">
-  <%= f.label :title %><br>
-  <%= f.text_field :title %>
+  <%= f.label :code  %><br>
+  <%= f.text_field :admin_code %>
 </div>
-<div class="field">
-  <%= f.label :focus_area %><br>
-  <%= f.text_field :focus_area %>
-</div>
-<div class="field">
-  <%= f.label :description %><br>
-  <%= f.text_area :description %>
-</div>
+
 <div class="actions">
   <%= f.submit %>
 </div>

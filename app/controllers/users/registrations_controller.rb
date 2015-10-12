@@ -3,6 +3,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
 # before_filter :configure_account_update_params, only: [:update]
 
 
+  def adminify
+    if params[:admin_code] == env['ADMIN_CODE']
+      current_user.update(admin: true)
+    else
+      redirect :back , altert: "Your code was invalid"
+  end
+
   # GET /resource/sign_up
   # def new
   #   super

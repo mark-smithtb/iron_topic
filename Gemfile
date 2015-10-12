@@ -11,6 +11,9 @@ gem 'omniauth-github'
 gem 'dotenv-rails'
 gem 'octokit'
 
+#nested comments
+gem 'ancestry', '~> 2.1.0'
+
 #markup and syntax highlighting
 gem 'redcarpet'
 gem 'coderay'
