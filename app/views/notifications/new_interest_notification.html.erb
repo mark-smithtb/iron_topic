@@ -1,0 +1,13 @@
+<h1>Notifications#new_interest_notification</h1>
+
+<p>
+  Hi <%= @topic.user.name %>,
+
+  New interest has been show on your topic <%= @topic.title %>
+</p>
+<%= link_to 'View your topic', topic_url(@topic) %>
+<p>
+<%= @interest.user.name %>
+<%= @interest.score %>
+<%= @interest.comment %>
+</p>

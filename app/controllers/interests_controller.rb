@@ -18,6 +18,7 @@ class InterestsController < ApplicationController
       @topic.interest_score += score
       @topic.rating = @topic.interest_score / @topic.interest_count
       @topic.save
+      Notifications.new_interest_notification(@topic, @interest).deliver
       redirect_to @topic
     end
 
