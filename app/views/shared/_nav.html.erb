@@ -4,13 +4,13 @@
       <ul class="nav navbar-nav">
         <% if user_signed_in? %>
         <li class="navigation_link"><%= link_to 'Home', topics_path %></li>
-        <li class="navigation_link"><%= link_to 'New', newest_topics_path %></li>
-        <li id='new_topic' class="navigation_link"><%= link_to 'Add a topic', new_topic_path %></li>
+        <li class="navigation_link"><%= link_to 'New', newest_topics_path%></li>
+        <li id='new_topic' class="navigation_link"><%= link_to 'Add a topic', new_topic_path, remote: true  %></li>
       </li>
     </ul>
     <ul class="nav navbar-nav pull-right">
       <li>
-        <form method="get" action="<%= search_topics_path %>" class="navbar-form pull-right" role="search">
+        <form id="search-bar" method="get" action="<%= search_topics_path %>" class="navbar-form pull-right" role="search" data-remote="true">
           <input type="text" class="search-field" placeholder="Search" name="q" >
           <select type="select" class="search-select" name="scope">
             <option value="all" selected>All</option>

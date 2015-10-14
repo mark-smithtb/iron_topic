@@ -11,16 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151010230022) do
+ActiveRecord::Schema.define(version: 20151013002801) do
 
   create_table "interests", force: :cascade do |t|
     t.string   "comment"
     t.integer  "score"
     t.integer  "user_id"
     t.integer  "topic_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.integer  "interestable_id"
+    t.string   "interestable_type"
+    t.string   "ancestry"
   end
+
+  add_index "interests", ["ancestry"], name: "index_interests_on_ancestry"
 
   create_table "topics", force: :cascade do |t|
     t.string   "title"

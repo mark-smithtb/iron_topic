@@ -20,11 +20,11 @@ class TopicsController < ApplicationController
 
   def search
     @topics = Topic.search(params[:q], params[:scope]).page(params[:page])
-    render :index
   end
 
   def show
     @interests = @topic.interests.order(created_at: :desc).page(params[:page])
+    @commented = current_user.interests.where(topic_id: @topic).where("score is not null")
   end
 
   def edit
@@ -39,7 +39,6 @@ class TopicsController < ApplicationController
     @topic = Topic.new(topic_params)
     @topic.user_id = current_user.id
     @topic.save
-    redirect_to @topic
   end
 
   def destroy

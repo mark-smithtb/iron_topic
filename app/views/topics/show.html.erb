@@ -27,15 +27,20 @@
       <p>
         <%= markdown(@topic.description) %>
       </p>
+
       <%= render 'interests_form' %>
       <h4>Ratings and Comments</h4>
       <% @interests.each do |interest| %>
-      <p>
+      <span class="row">
         <%= interest.user.name %>
         <%= interest.score %>
-        <%= markdown(interest.comment) %>
-      </p>
+      </span>
+        <p><%= markdown(interest.comment) %></p>
+      <%= link_to "Reply", new_interest_path, remote: true %>
+      <div id="interest-form" style="display:none;"></div>
+
       <% end %>
+
       <%= link_to_previous_page @interests, 'Previous' %>
       <%= link_to_next_page @interests, 'Next Page' %>
 

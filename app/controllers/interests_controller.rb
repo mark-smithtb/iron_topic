@@ -1,7 +1,13 @@
 class InterestsController < ApplicationController
   before_action :set_interest, only: [:show, :edit, :update, :destroy]
 
-
+  def new
+        @interest = Interest.new
+        respond_to do |format|
+          format.html
+          format.js
+        end
+  end
 
 
   def create
@@ -9,9 +15,9 @@ class InterestsController < ApplicationController
     @interest = @topic.interests.new(interest_params)
     @interest.user_id = current_user.id
     @interest.save
-    score = @interest.score
+    score = @interest.score.to_i
     @topic.interest_score += score
-    @topic.rating = @topic.interest_score / @topic.interests_count
+    @topic.rating = @topic.interest_score / @topic.interests.where("score is not null").count
     @topic.save
     Notifications.new_interest_notification(@topic, @interest).deliver
     redirect_to @topic
@@ -37,7 +43,7 @@ class InterestsController < ApplicationController
   end
 
   def interest_params
-    params.require(:interest).permit(:comment, :score)
+    params.require(:interest).permit(:comment, :score, :parent_id)
   end
 
 end
