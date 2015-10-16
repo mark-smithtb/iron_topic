@@ -1,1 +1,4 @@
 $('#topics').html( $("<%= j (render @topics) %>") )
+
+// Now reapply stars
+$('input.rating').rating();

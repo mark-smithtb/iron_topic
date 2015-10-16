@@ -4,8 +4,7 @@
   </div>
   <div class="col-md-12 topic">
     <h4>Focus: <%= topic.focus_area %> </h4>
-    <span class="row">Rating: <%= topic.rating %></span>
-
+    <input type="hidden" class="rating" value="<%= topic.rating %>" data-readonly/>
 
     <p>
       by
@@ -24,6 +23,6 @@
     <p>
       <%= markdown(topic.description) %>
     </p>
-    <%= link_to 'Rate this topic', topic_path(topic), class: "btn rating-button" %>
-    <div id="interest-form" style="display:none;"></div>
+    <%= link_to 'Rate this topic', new_topic_interest_path(topic), class: "btn rating-button", remote: true %>
+    <div id="interest-form-<%= topic.id %>" style="display:none;"></div>
   </div>

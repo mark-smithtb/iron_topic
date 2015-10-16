@@ -13,5 +13,24 @@
 //= require jquery
 //= require bootstrap-sprockets
 //= require jquery_ujs
-//= require turbolinks
 //= require_tree .
+
+// $(document).ready(function()
+// {
+// $('.rating-button').click(function(event)
+// {
+//     event.preventDefault();
+//     var button = $(this);
+//
+//     $.ajax('/interests/new', {
+//       method: "GET",
+//       data: {
+//         topic_id: button.data("topic-id")
+//       }
+//     }).success(function(response)
+//     {
+//       var newElement = $(response);
+//       newElement.insertAfter(button).slideDown();
+//     })
+// });
+// });

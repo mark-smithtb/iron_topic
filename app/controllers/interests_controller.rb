@@ -1,12 +1,13 @@
 class InterestsController < ApplicationController
   before_action :set_interest, only: [:show, :edit, :update, :destroy]
-
   def new
-        @interest = Interest.new
-        respond_to do |format|
-          format.html
-          format.js
-        end
+    @interest = Interest.new
+    @topic = Topic.find(params[:topic_id])
+    @rated = current_user.interests.where(topic_id: params[:topic_id]).where("score is not null")
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
 

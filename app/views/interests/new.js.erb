@@ -1,2 +1,2 @@
-$('#interest-form').html("<%= j (render 'form') %>");
-$('#interest-form').slideDown();
+$('#interest-form-<%= @topic.id %>').html("<%= j (render 'form') %>").slideToggle();
+$('input.rating').rating();

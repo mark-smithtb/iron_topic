@@ -20,4 +20,12 @@ class Topic < ActiveRecord::Base
     end
   end
 
+  def self.visable_by(user)
+    unless user.admin?
+    where("org = ? or (org is null)", user.org)
+  else
+    all
+  end
+  end
+
 end

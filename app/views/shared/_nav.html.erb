@@ -1,6 +1,21 @@
 <div class="navbar navigation">
-  <div class="container">
+
+
     <div class="navbar-collapse collapse content">
+      <div class="pull-left logo">
+      <% if user_signed_in? %>
+      <% case %>
+      <% when current_user.org == "backend" %>
+      <%= image_tag("backendlogo.png", height: 100) %>
+      <% when current_user.org == "front end" %>
+      <%= image_tag("frontendlogo.png", height:100) %>
+      <% else %>
+      <%= image_tag("tiylogo.png", height:100) %>
+      <% end %>
+      <% else %>
+      <%= image_tag("tiylogo.png", height:100) %>
+      <% end %>
+    </div>
       <ul class="nav navbar-nav">
         <% if user_signed_in? %>
         <li class="navigation_link"><%= link_to 'Home', topics_path %></li>
@@ -9,6 +24,7 @@
       </li>
     </ul>
     <ul class="nav navbar-nav pull-right">
+      <% if current_page?(action: 'index') || current_page?(root_path) %>
       <li>
         <form id="search-bar" method="get" action="<%= search_topics_path %>" class="navbar-form pull-right" role="search" data-remote="true">
           <input type="text" class="search-field" placeholder="Search" name="q" >
@@ -21,11 +37,11 @@
           <button type="submit" class="btn search">Search</button>
         </form>
       </li>
+      <% end %>
       <li><%= link_to "Logout", destroy_user_session_path, method: :delete, data: { confirm: 'Really logout?' }, class: "navigation_link" %></li>
       <%else%>
       <li><%= link_to 'Create an Account', new_user_registration_path, class: "navigation_link" %></li>
       <%end%>
     </ul>
   </div>
-</div>
 </div>

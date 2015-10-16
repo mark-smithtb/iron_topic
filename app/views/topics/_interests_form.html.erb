@@ -1,6 +1,6 @@
 <div class="interest-form">
   <%= form_for([@topic, Interest.new], class: "form-horizontal") do |f| %>
-  <% if @commented == [] %>
+  <% if @rated == [] %>
   <h4> Rate this topic </h4>
     <div class="row">
       <p> Rating </p>
@@ -20,7 +20,7 @@
     </div>
   </div>
   <div class="actions">
-    <%= f.submit "Rate", class: "btn rating-button interest-button"%>
+    <%= f.submit "Rate", class: "btn interest-button"%>
   </div>
   <% end %>
 </div>

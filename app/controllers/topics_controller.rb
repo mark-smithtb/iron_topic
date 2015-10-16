@@ -8,23 +8,23 @@ class TopicsController < ApplicationController
     # user.login
     # byebug
     # @organizations = client.user.organizations(current_user.nickname)
-    @topics = Topic.all.order(rating: :desc).page(params[:page])
+    @topics = Topic.all.order(rating: :desc).visable_by(current_user).page(params[:page])
   end
 
   def newest
-    @topics = Topic.all.order(created_at: :desc).page(params[:page])
+    @topics = Topic.all.order(created_at: :desc).visable_by(current_user).page(params[:page])
     render :index
   end
 
 
 
   def search
-    @topics = Topic.search(params[:q], params[:scope]).page(params[:page])
+    @topics = Topic.search(params[:q], params[:scope]).visable_by(current_user).page(params[:page])
   end
 
   def show
     @interests = @topic.interests.order(created_at: :desc).page(params[:page])
-    @commented = current_user.interests.where(topic_id: @topic).where("score is not null")
+    @rated = current_user.interests.where(topic_id: @topic).where("score is not null")
   end
 
   def edit
@@ -38,6 +38,7 @@ class TopicsController < ApplicationController
   def create
     @topic = Topic.new(topic_params)
     @topic.user_id = current_user.id
+    @topic.org = current_user.org
     @topic.save
   end
 

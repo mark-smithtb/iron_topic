@@ -11,6 +11,6 @@ $('#search-bar').submit(function()
       q: q
       scope: scope
     }
-  })
+  });
 });
 });
