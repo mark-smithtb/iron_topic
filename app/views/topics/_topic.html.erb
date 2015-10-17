@@ -1,6 +1,6 @@
 <div class="topic">
   <div class="row">
-    <span> <a class="title" href="<%= topic_path(topic) %>"><%= topic.title %></a> </span>
+    <span> <a class="title" data-topic="<%= topic.id %>" href="<%= topic_path(topic) %>" data-remote="true"><%= topic.title %></a> </span>
   </div>
   <div class="col-md-12 topic">
     <h4>Focus: <%= topic.focus_area %> </h4>
@@ -14,7 +14,7 @@
     </p>
     <span>
       <% if policy(topic).update? %>
-      <%= link_to 'edit topic', edit_topic_path(topic) %>
+      <%= link_to 'edit topic', edit_topic_path(topic), remote: true %>
       <% end %>
       <% if policy(topic).destroy? %>
       <%= link_to 'delete word', topic, method: :delete, data: { confirm: 'Are you sure?' } %>

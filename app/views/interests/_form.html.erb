@@ -1,5 +1,5 @@
 <div class="interest-form">
-  <%= form_for([@topic, Interest.new], class: "form-horizontal ", id: "form-interest") do |f| %>
+  <%= form_for([@topic, Interest.new], class: "form-horizontal ", id: "form-interest", remote: true) do |f| %>
   <% if @rated == [] %>
   <h4> Rate this topic </h4>
     <div class="row">

@@ -21,7 +21,6 @@ class InterestsController < ApplicationController
     @topic.rating = @topic.interest_score / @topic.interests.where("score is not null").count
     @topic.save
     Notifications.new_interest_notification(@topic, @interest).deliver
-    redirect_to @topic
   end
 
   def destroy

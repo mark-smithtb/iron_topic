@@ -1,11 +1,10 @@
 <div class="container">
   <div class="col-md-6">
     <div id="new-topic-form" style="display:none;"></div>
-<div id="topics">
-  <%= render @topics %>
-</div>
-      <%= link_to_previous_page @topics, 'Previous', params: {search: @search} %>
-      <%= link_to_next_page @topics, 'Next Page', params: {search: @search} %>
+    <div id="topics">
+      <%= render @topics %>
     </div>
   </div>
+  <%= link_to_previous_page @topics, 'Previous', params: {search: @search} %>
+  <%= link_to_next_page @topics, 'Next Page', params: {search: @search} %>
 </div>

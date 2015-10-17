@@ -19,7 +19,7 @@
       <ul class="nav navbar-nav">
         <% if user_signed_in? %>
         <li class="navigation_link"><%= link_to 'Home', topics_path %></li>
-        <li class="navigation_link"><%= link_to 'New', newest_topics_path%></li>
+        <li class="navigation_link"><%= link_to 'New', newest_topics_path, remote: true %></li>
         <li id='new_topic' class="navigation_link"><%= link_to 'Add a topic', new_topic_path, remote: true  %></li>
       </li>
     </ul>
