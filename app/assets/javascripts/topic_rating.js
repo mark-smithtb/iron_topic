@@ -17,7 +17,7 @@
       // one based on the existence of a valid start rate.
       opts.stop = parseInt(opts.stop, 10);
       opts.stop = isNaN(opts.stop) ?
-        opts.start + OFFSET || undefined : opts.stop;
+      opts.start + OFFSET || undefined : opts.stop;
       // 0 step is ignored.
       opts.step = parseInt(opts.step, 10) || undefined;
       // Symbol fractions and scale (number of significant digits).
@@ -39,8 +39,8 @@
   Rating.prototype = {
     _init: function () {
       var rating = this,
-          $input = this.$input,
-          $rating = this.$rating;
+      $input = this.$input,
+      $rating = this.$rating;
 
       var ifEnabled = function (f) {
         return function (e) {
@@ -48,7 +48,7 @@
           // elements with type hidden.
           // Keep readonly prop for legacy but its use should be deprecated.
           if (!$input.prop('disabled') && !$input.prop('readonly') &&
-              $input.data('readonly') === undefined) {
+          $input.data('readonly') === undefined) {
             f.call(this, e);
           }
         }
@@ -58,35 +58,35 @@
       for (var i = 1; i <= this._rateToIndex(this.options.stop); i++) {
         // Create the rating symbol container.
         var $symbol = $('<div class="rating-symbol"></div>').css({
-            display: 'inline-block',
-            position: 'relative'
+          display: 'inline-block',
+          position: 'relative'
         });
         // Add background symbol to the symbol container.
         $('<div class="rating-symbol-background ' + this.options.empty + '"></div>')
-          .appendTo($symbol);
+        .appendTo($symbol);
         // Add foreground symbol to the symbol container.
         // The filled icon is wrapped with a div to allow fractional selection.
         $('<div class="rating-symbol-foreground"></div>')
-          .append('<span></span>')
-          .css({
-            display: 'inline-block',
-            position: 'absolute',
-            overflow: 'hidden',
-            left: 0,
-            // Overspecify right and left to 0 and let the container direction
-            // decide which one is going to take precedence according to the
-            // ltr/rtl direction.
-            // (https://developer.mozilla.org/en-US/docs/Web/CSS/right)
-            // When both the right CSS property and the left CSS property are
-            // defined, the position of the element is overspecified. In that
-            // case, the left value has precedence when the container is
-            // left-to-right (that is that the right computed value is set to
-            // -left), and the right value has precedence when the container is
-            // right-to-left (that is that the left computed value is set to
-            // -right).
-            right: 0,
-            width: 0
-          }).appendTo($symbol);
+        .append('<span></span>')
+        .css({
+          display: 'inline-block',
+          position: 'absolute',
+          overflow: 'hidden',
+          left: 0,
+          // Overspecify right and left to 0 and let the container direction
+          // decide which one is going to take precedence according to the
+          // ltr/rtl direction.
+          // (https://developer.mozilla.org/en-US/docs/Web/CSS/right)
+          // When both the right CSS property and the left CSS property are
+          // defined, the position of the element is overspecified. In that
+          // case, the left value has precedence when the container is
+          // left-to-right (that is that the right computed value is set to
+          // -left), and the right value has precedence when the container is
+          // right-to-left (that is that the left computed value is set to
+          // -right).
+          right: 0,
+          width: 0
+        }).appendTo($symbol);
         $rating.append($symbol);
         this.options.extendSymbol.call($symbol, this._indexToRate(i));
       }
@@ -95,9 +95,9 @@
 
       // Keep rating control and its associated input in sync.
       $input
-        .on('change', function () {
-          rating._updateRate($(this).val());
-        });
+      .on('change', function () {
+        rating._updateRate($(this).val());
+      });
 
       var fractionalIndex = function (e) {
         var $symbol = $(e.currentTarget);
@@ -106,8 +106,8 @@
         // right-to-left then the symbol starts at the right. So we have to add
         // the symbol width to the left offset to get the CSS rigth position.
         var x = Math.abs((e.pageX || e.originalEvent.touches[0].pageX) -
-          (($symbol.css('direction') === 'rtl' && $symbol.width()) +
-          $symbol.offset().left));
+        (($symbol.css('direction') === 'rtl' && $symbol.width()) +
+        $symbol.offset().left));
 
         // NOTE: When the mouse pointer is close to the left side of the symbol
         // a negative x is returned. Probably some precision error in the
@@ -120,30 +120,30 @@
       // Keep the current highlighted index (fractional or not).
       var index;
       $rating
-        .on('mousedown touchstart', '.rating-symbol', ifEnabled(function (e) {
-          // Set input 'trigger' the change event.
-          $input.val(rating._indexToRate(fractionalIndex(e))).change();
-        }))
-        .on('mousemove touchmove', '.rating-symbol', ifEnabled(function (e) {
-          var current = rating._roundToFraction(fractionalIndex(e));
-          if (current !== index) {
-            // Trigger pseudo rate leave event if the mouse pointer is not
-            // leaving from another symbol (mouseleave).
-            if (index !== undefined) $(this).trigger('rating.rateleave');
-            // Update index and trigger rate enter event.
-            index = current;
-            $(this).trigger('rating.rateenter', [rating._indexToRate(index)]);
-          }
-          // Fill the symbols as fractions chunks.
-          rating._fillUntil(current);
-        }))
-        .on('mouseleave touchend', '.rating-symbol', ifEnabled(function () {
-          // When a symbol is left, reset index and trigger rate leave event.
-          index = undefined;
-          $(this).trigger('rating.rateleave');
-          // Restore on hover out.
-          rating._fillUntil(rating._rateToIndex(parseFloat($input.val())));
-        }));
+      .on('mousedown touchstart', '.rating-symbol', ifEnabled(function (e) {
+        // Set input 'trigger' the change event.
+        $input.val(rating._indexToRate(fractionalIndex(e))).change();
+      }))
+      .on('mousemove touchmove', '.rating-symbol', ifEnabled(function (e) {
+        var current = rating._roundToFraction(fractionalIndex(e));
+        if (current !== index) {
+          // Trigger pseudo rate leave event if the mouse pointer is not
+          // leaving from another symbol (mouseleave).
+          if (index !== undefined) $(this).trigger('rating.rateleave');
+          // Update index and trigger rate enter event.
+          index = current;
+          $(this).trigger('rating.rateenter', [rating._indexToRate(index)]);
+        }
+        // Fill the symbols as fractions chunks.
+        rating._fillUntil(current);
+      }))
+      .on('mouseleave touchend', '.rating-symbol', ifEnabled(function () {
+        // When a symbol is left, reset index and trigger rate leave event.
+        index = undefined;
+        $(this).trigger('rating.rateleave');
+        // Restore on hover out.
+        rating._fillUntil(rating._rateToIndex(parseFloat($input.val())));
+      }));
 
     },
     // Fill rating symbols until index.
@@ -153,24 +153,24 @@
       var i = Math.floor(index);
       // Hide completely hidden symbols background.
       $rating.find('.rating-symbol-background')
-        .css('visibility', 'visible')
-        .slice(0, i).css('visibility', 'hidden');
+      .css('visibility', 'visible')
+      .slice(0, i).css('visibility', 'hidden');
       var $rates = $rating.find('.rating-symbol-foreground');
       // Reset foreground
       $rates.width(0);
       // Fill all the foreground symbols up to the selected one.
       $rates.slice(0, i).width('auto')
-        .find('span').attr('class', this.options.filled);
+      .find('span').attr('class', this.options.filled);
       // Amend selected symbol.
       $rates.eq(index % 1 ? i : i - 1)
-        .find('span').attr('class', this.options.filledSelected);
+      .find('span').attr('class', this.options.filledSelected);
       // Partially fill the fractional one.
       $rates.eq(i).width(index % 1 * 100 + '%');
     },
     // Calculate the rate of an index according the the start and step.
     _indexToRate: function (index) {
       return this.options.start + Math.floor(index) * this.options.step +
-        this.options.step * this._roundToFraction(index % 1);
+      this.options.step * this._roundToFraction(index % 1);
     },
     // Calculate the corresponding index for a rate.
     _rateToIndex: function (rate) {
@@ -208,7 +208,7 @@
 
   $.fn.rating = function (options) {
     var args = Array.prototype.slice.call(arguments, 1),
-        result;
+    result;
     this.each(function () {
       var $input = $(this);
       var rating = $input.data('rating');

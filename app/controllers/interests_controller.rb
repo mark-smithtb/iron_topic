@@ -3,7 +3,7 @@ class InterestsController < ApplicationController
   def new
     @interest = Interest.new
     @topic = Topic.find(params[:topic_id])
-    @rated = current_user.interests.where(topic_id: params[:topic_id]).where("score is not null")
+    @rated = current_user.interests.where(topic_id: params[:topic_id]).where("score is not null") != []
     respond_to do |format|
       format.html
       format.js

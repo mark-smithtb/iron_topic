@@ -1,11 +1,14 @@
 <div class="topic">
   <div class="row">
-    <span> <a class="title" data-topic="<%= topic.id %>" href="<%= topic_path(topic) %>" data-remote="true"><%= topic.title %></a> </span>
+    <span>
+      <a class="title" data-remote="true" data-topic="<%= topic.id %>" href="<%= topic_path(topic) %>"><%= topic.title %></a>
+    </span>
   </div>
   <div class="col-md-12 topic">
-    <h4>Focus: <%= topic.focus_area %> </h4>
-    <input type="hidden" class="rating" value="<%= topic.rating %>" data-readonly/>
-
+    <h4>Focus:
+      <%= topic.focus_area %>
+    </h4>
+    <input class="rating" data-readonly type="hidden" value="<%= topic.rating %>"/>
     <p>
       by
       <%= topic.user.name %>
@@ -23,6 +26,10 @@
     <p>
       <%= markdown(topic.description) %>
     </p>
+    <% unless current_user.interests.where(topic_id: topic.id).where("score is not null") != [] %>
     <%= link_to 'Rate this topic', new_topic_interest_path(topic), class: "btn rating-button", remote: true %>
-    <div id="interest-form-<%= topic.id %>" style="display:none;"></div>
+    <% else %>
+    <%= link_to 'Make a comment', new_topic_interest_path(topic), class: "btn rating-button", remote: true %>
+    <% end %>
+    <div id="interest-form-<%= topic.id %>" style="display:none;" class="interest-form"></div>
   </div>

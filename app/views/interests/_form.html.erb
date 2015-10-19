@@ -1,26 +1,28 @@
 <div class="interest-form">
   <%= form_for([@topic, Interest.new], class: "form-horizontal ", id: "form-interest", remote: true) do |f| %>
-  <% if @rated == [] %>
-  <h4> Rate this topic </h4>
-    <div class="row">
-      <p> Rating </p>
-      <div class="input-group">
-    <%= f.label :score %><br>
-    <%= f.hidden_field :score, class: "rating form_control" %>
-  </div>
-  <% else %>
-  <h4>Make a comment</h4>
+  <% unless @rated %>
   <div class="row">
-  <% end %>
-  </div>
-  <div class="row">
-    <div class="field">
-      <p> Comment </p>
-      <%= f.text_area :comment %>
+    <p> Rating </p>
+    <div class="input-group">
+      <%= f.label :score %><br>
+      <%= f.hidden_field :score, class: "rating form_control" %>
     </div>
+    <% else %>
+    <div class="row">
+      <% end %>
+    </div>
+    <div class="row">
+      <div class="field">
+        <p> Comment </p>
+        <%= f.text_area :comment %>
+      </div>
+    </div>
+    <div class="actions">
+      <% if @rated %>
+      <%= f.submit "Comment", class: "btn interest-button"%>
+      <% else %>
+      <%= f.submit "Rate", class: "btn interest-button"%>
+      <% end %>
+    </div>
+    <% end %>
   </div>
-  <div class="actions">
-    <%= f.submit "Rate", class: "btn interest-button"%>
-  </div>
-  <% end %>
-</div>

@@ -1,8 +1,6 @@
 <div class="navbar navigation">
-
-
-    <div class="navbar-collapse collapse content">
-      <div class="pull-left logo">
+  <div class="navbar-collapse collapse content">
+    <div class="pull-left logo">
       <% if user_signed_in? %>
       <% case %>
       <% when current_user.org == "backend" %>
@@ -16,32 +14,32 @@
       <%= image_tag("tiylogo.png", height:100) %>
       <% end %>
     </div>
-      <ul class="nav navbar-nav">
-        <% if user_signed_in? %>
-        <li class="navigation_link"><%= link_to 'Home', topics_path %></li>
-        <li class="navigation_link"><%= link_to 'New', newest_topics_path, remote: true %></li>
-        <li id='new_topic' class="navigation_link"><%= link_to 'Add a topic', new_topic_path, remote: true  %></li>
-      </li>
-    </ul>
-    <ul class="nav navbar-nav pull-right">
-      <% if current_page?(action: 'index') || current_page?(root_path) %>
-      <li>
-        <form id="search-bar" method="get" action="<%= search_topics_path %>" class="navbar-form pull-right" role="search" data-remote="true">
-          <input type="text" class="search-field" placeholder="Search" name="q" >
-          <select type="select" class="search-select" name="scope">
-            <option value="all" selected>All</option>
-            <option value="title">Title</option>
-            <option value="focus_area">Focus Area</option>
-            <option value="user">User</option>
-          </select>
-          <button type="submit" class="btn search">Search</button>
-        </form>
-      </li>
-      <% end %>
-      <li><%= link_to "Logout", destroy_user_session_path, method: :delete, data: { confirm: 'Really logout?' }, class: "navigation_link" %></li>
-      <%else%>
-      <li><%= link_to 'Create an Account', new_user_registration_path, class: "navigation_link" %></li>
-      <%end%>
-    </ul>
-  </div>
+    <ul class="nav navbar-nav">
+      <% if user_signed_in? %>
+      <li class="navigation_link"><%= link_to 'Home', topics_path %></li>
+      <li class="navigation_link"><%= link_to 'New', newest_topics_path, remote: true %></li>
+      <li class="navigation_link" id='new_topic'><%= link_to 'Add a topic', new_topic_path, remote: true  %></li>
+    </li>
+  </ul>
+  <ul class="nav navbar-nav pull-right">
+    <% if current_page?(action: 'index') || current_page?(root_path) %>
+    <li>
+      <form action="<%= search_topics_path %>" class="navbar-form pull-right" data-remote="true" id="search-bar" method="get" role="search">
+        <input class="search-field" name="q" placeholder="Search" type="text">
+        <select class="search-select" name="scope" type="select">
+          <option selected value="all">All</option>
+          <option value="title">Title</option>
+          <option value="focus_area">Focus Area</option>
+          <option value="user">User</option>
+        </select>
+        <button class="btn search" type="submit">Search</button>
+      </form>
+    </li>
+    <% end %>
+    <li><%= link_to "Logout", destroy_user_session_path, method: :delete, data: { confirm: 'Really logout?' }, class: "navigation_link" %></li>
+    <%else%>
+    <li><%= link_to 'Create an Account', new_user_registration_path, class: "navigation_link" %></li>
+    <%end%>
+  </ul>
+</div>
 </div>

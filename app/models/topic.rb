@@ -5,15 +5,15 @@ class Topic < ActiveRecord::Base
 
 
   def self.search(search, scope)
-
-    if scope == "all"
+    case
+    when scope == "all"
       where("title LIKE ? or focus_area LIKE ?", "%#{search}%" , "%#{search}%")
-    elsif scope == "user"
+    when scope == "user"
       user = User.find_by("name Like ?", "%#{search}%").id
       where("user_id LIKE ?", "%#{user}%")
-    elsif scope == "title"
+    when scope == "title"
       where("title Like ?", "%#{search}%")
-    elsif scope == "focus_area"
+    when scope == "focus_area"
       where("focus_area Like ?", "%#{search}%")
     else
       where("title LIKE ? or focus_area LIKE ?", "%#{search}%" , "%#{search}%")
@@ -22,10 +22,10 @@ class Topic < ActiveRecord::Base
 
   def self.visable_by(user)
     unless user.admin?
-    where("org = ? or (org is null)", user.org)
-  else
-    all
-  end
+      where("org = ? or (org is null)", user.org)
+    else
+      all
+    end
   end
 
 end

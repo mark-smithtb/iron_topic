@@ -17,7 +17,7 @@ class TopicsController < ApplicationController
   def show
     @topic = Topic.find(params[:id])
     @interests = @topic.interests.order(created_at: :desc).page(params[:page])
-    @rated = current_user.interests.where(topic_id: @topic).where("score is not null")
+    @rated = current_user.interests.where(topic_id: @topic).where("score is not null") != []
   end
 
   def edit

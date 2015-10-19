@@ -1,16 +1,22 @@
 .navigation {
+  font-family: "Tisapromedium";
   background-color: #39474e;
   height: 8em;
- .content {
-   position: relative;
-   top: 2em;
+  .content {
+    position: relative;
+    top: 2em;
 
-   a {
-     color: #afb0b1;
-     font-size: 1.5em;
-   }
+    a {
+      text-decoration: none;
+      color: white;
+      font-size: 1.5em;
+      &:hover {
+        background-color: #30373d;
+      }
 
- }
+    }
+
+  }
 }
 
 .search-field {
@@ -18,21 +24,22 @@
   top: 1px;
   background-color: #30373d;
   border: 0;
-  width: 10em;
-  height: 1.8em;
+  width: 178px;
+  height: 30.391px;
   font-size: 18px;
   border-radius: 5px;
-  color: #afb0b1;
+  color: white;
 }
 
 .search {
   background-color: #478c89;
+  color: white;
 
 }
 
 .search-select {
   background-color: #30373d;
-  color: #afb0b1;
+  color: white;
   height: 1.8em;
   font-size: 18px;
   border: 0;

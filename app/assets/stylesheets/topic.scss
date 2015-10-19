@@ -2,6 +2,7 @@
   font-size: 2.5em;
   color: black;
   text-decoration: none;
+  font-family: "TisaproMedium";
 }
 
 .topic {
@@ -10,30 +11,27 @@
 
 .rating-button {
   background-color: #39474e;
-
-    text-decoration: none;
+  text-decoration: none;
+  color: #afb0b1;
+  &:visited {
     color: #afb0b1;
+  }
 }
 
 .topic-button {
   background-color: #39474e;
 
-    text-decoration: none;
-    color: #afb0b1;
+  text-decoration: none;
+  color: #afb0b1;
 }
 
 .interest-button {
   position: relative;
   right: 1em;
+  background-color: #39474e;
+  text-decoration: none;
+  color: #afb0b1;
+  &:hover {
+    color: #afb0b1;
+  }
 }
-
-// .stars, span.stars span {
-//     display: block;
-//     background: url(\stars.png) 0 -16px repeat-x;
-//     width: 80px;
-//     height: 16px;
-// }
-//
-// .stars span {
-//     background-position: 0 0;
-// }
