@@ -10,7 +10,6 @@ class User < ActiveRecord::Base
   def self.from_omniauth(auth)
     user = where(provider: auth['provider'], uid: auth['uid']).first_or_create
     client = Octokit::Client.new({ access_token: auth.credentials.token, client_id: ENV['GITHUB_APP_ID'] , client_secret: ENV['GITHUB_APP_SECRET']})
-    byebug
     user.name         = auth.info.name
     user.email        = auth.info.email
     user.nickname     = auth.info.nickname

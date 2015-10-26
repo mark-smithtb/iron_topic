@@ -95,6 +95,9 @@ GEM
     haml (4.0.7)
       tilt
     hashie (3.4.2)
+    httparty (0.8.3)
+      multi_json (~> 1.0)
+      multi_xml
     i18n (0.7.0)
     jbuilder (2.3.2)
       activesupport (>= 3.0.0, < 5)
@@ -120,6 +123,8 @@ GEM
     multi_json (1.11.2)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
+    nest_thermostat (0.0.4)
+      httparty (~> 0.8.3)
     nested_form (0.3.2)
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
@@ -258,6 +263,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   kaminari
+  nest_thermostat
   octokit
   omniauth
   omniauth-github

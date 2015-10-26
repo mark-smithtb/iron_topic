@@ -1,5 +1,5 @@
 class Topic < ActiveRecord::Base
-  has_many :interests, dependent: :destroy
+  has_many :interests, dependent: :delete_all
   belongs_to :user
   paginates_per 10
 

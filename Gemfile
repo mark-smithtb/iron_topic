@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.2.2'
+ruby '2.2.3'
 
 gem 'rails_12factor'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -53,6 +53,8 @@ gem 'kaminari'
 gem 'pg'
 
 gem 'factory_girl_rails'
+
+gem 'nest_thermostat'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
