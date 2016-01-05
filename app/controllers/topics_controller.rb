@@ -3,8 +3,6 @@ class TopicsController < ApplicationController
 
 
   def index
-    nest = NestThermostat::Nest.new(email: ENV['NEST_EMAIL'], password: ENV['NEST_PASS'])
-    byebug
     @topics = Topic.all.order(rating: :desc).visable_by(current_user).page(params[:page])
   end
 
